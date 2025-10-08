@@ -1,0 +1,92 @@
+<div class="login-container">
+  <!-- Background with gradient -->
+  <div class="login-background"></div>
+
+  <!-- Login Card -->
+  <div class="login-card">
+    
+    <!-- Header -->
+    <div class="login-header">
+      <div class="logo-container">
+        <img src="logo.png" alt="Park Green Energy Logo" class="logo-image">
+      </div>
+      <h1>Green Energy Park</h1>
+      <p>IFC Viewer - Sensor Monitoring System</p>
+    </div>
+
+    <!-- Login Form -->
+    <form class="login-form" (submit)="onLogin(); $event.preventDefault()">
+      
+      <!-- Error Message -->
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        {{ errorMessage }}
+      </div>
+
+      <!-- Username Field -->
+      <div class="form-group">
+        <label for="username">
+          <i class="bi bi-person-fill"></i>
+          Username
+        </label>
+        <input 
+          type="text" 
+          id="username"
+          class="form-control"
+          [(ngModel)]="username"
+          name="username"
+          placeholder="Enter your username"
+          [disabled]="isLoading"
+          (keypress)="onKeyPress($event)"
+          autocomplete="username"
+          required
+        />
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">
+          <i class="bi bi-lock-fill"></i>
+          Password
+        </label>
+        <input 
+          type="password" 
+          id="password"
+          class="form-control"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Enter your password"
+          [disabled]="isLoading"
+          (keypress)="onKeyPress($event)"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+
+      <!-- Login Button -->
+      <button 
+        type="submit" 
+        class="btn btn-login"
+        [disabled]="isLoading"
+      >
+        <span *ngIf="!isLoading">
+          <i class="bi bi-box-arrow-in-right me-2"></i>
+          Sign In
+        </span>
+        <span *ngIf="isLoading">
+          <span class="spinner-border spinner-border-sm me-2"></span>
+          Signing in...
+        </span>
+      </button>
+    </form>
+
+    <!-- Footer Info -->
+    <div class="login-footer">
+      <p class="text-muted">
+        <i class="bi bi-info-circle me-1"></i>
+        Demo Credentials: <strong>admin / admin</strong>
+      </p>
+    </div>
+
+  </div>
+</div>

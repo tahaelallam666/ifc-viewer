@@ -1,0 +1,118 @@
+<div class="ifc-viewer-container">
+  
+  <!-- Header with Bootstrap -->
+  <header class="bg-dark text-white py-3 shadow-sm">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <img src="logo.png" alt="Park Green Energy Logo" class="header-logo me-3">
+          <h1 class="h4 mb-0">
+            Green Energy Park - IFC Viewer
+          </h1>
+        </div>
+        <!-- User Info & Logout -->
+        <div class="d-flex align-items-center gap-3">
+          <div class="user-info" *ngIf="currentUser">
+            <i class="bi bi-person-circle me-2"></i>
+            <span>{{ currentUser.username }}</span>
+          </div>
+          <button 
+            type="button" 
+            class="btn btn-outline-light btn-sm"
+            (click)="onLogout()"
+            title="Logout">
+            <i class="bi bi-box-arrow-right me-1"></i>
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Toolbar with Bootstrap buttons -->
+  <div class="toolbar bg-light border-bottom py-2 shadow-sm">
+    <div class="container-fluid">
+      <div class="btn-toolbar" role="toolbar">
+        
+        <!-- Upload IFC File -->
+        <div class="btn-group me-2">
+          <label class="btn btn-primary" [class.disabled]="isLoading">
+            <input 
+              type="file" 
+              accept=".ifc" 
+              (change)="onFileSelected($event)"
+              [disabled]="isLoading"
+              class="d-none"
+            />
+            <i class="bi bi-upload me-2"></i>
+            {{ isLoading ? 'Loading...' : 'Upload IFC File' }}
+          </label>
+        </div>
+
+        <!-- Sensor Data Table Button -->
+        <div class="btn-group me-2">
+          <button 
+            type="button" 
+            class="btn btn-success"
+            (click)="openSensorTable()"
+            title="View all sensor data in real-time">
+            <i class="bi bi-table me-2"></i>
+            Sensor Data Table
+          </button>
+        </div>
+
+        <!-- Historical Chart Button -->
+        <div class="btn-group me-2">
+          <button 
+            type="button" 
+            class="btn btn-info text-white"
+            (click)="openHistoricalChart()"
+            title="View historical sensor trends">
+            <i class="bi bi-graph-up me-2"></i>
+            Historical Charts
+          </button>
+        </div>
+
+        <!-- Clear Model Button -->
+        <div class="btn-group ms-auto" *ngIf="isModelLoaded">
+          <button 
+            type="button" 
+            class="btn btn-danger" 
+            (click)="clearModel()" 
+            [disabled]="isLoading">
+            <i class="bi bi-trash me-2"></i>
+            Clear Model
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3D Viewer Container -->
+  <div class="viewer-wrapper">
+    <div #viewerContainer class="viewer-canvas"></div>
+    
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" *ngIf="isLoading">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-3 text-white">Loading IFC model...</p>
+    </div>
+  </div>
+
+  <!-- Child Components -->
+
+  <!-- Sensor Table Component -->
+  <app-sensor-table
+    [show]="showSensorTable"
+    (closeTable)="closeSensorTable()">
+  </app-sensor-table>
+
+  <!-- Historical Chart Component -->
+  <app-historical-chart
+    [show]="showHistoricalChart"
+    (closeChart)="closeHistoricalChart()">
+  </app-historical-chart>
+
+</div>

@@ -1,0 +1,27 @@
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.font-monospace {
+  font-family: 'Courier New', monospace;
+}
+
+.table-responsive {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* Smooth row hover */
+tbody tr {
+  transition: all 0.2s ease;
+}
+
+tbody tr:hover {
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Critical row highlighting */
+.table-danger {
+  background-color: #f8d7da !important;
+}

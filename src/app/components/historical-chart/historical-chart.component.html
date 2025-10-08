@@ -1,0 +1,120 @@
+<!-- Modal Backdrop -->
+<div class="modal fade" [class.show]="show" [style.display]="show ? 'block' : 'none'" tabindex="-1" *ngIf="show">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      
+      <!-- Modal Header -->
+      <div class="modal-header bg-gradient-primary text-white">
+        <h5 class="modal-title">
+          <i class="bi bi-graph-up me-2"></i>
+          Historical Sensor Data Charts
+        </h5>
+        <button type="button" class="btn-close btn-close-white" (click)="onClose()" aria-label="Close"></button>
+      </div>
+
+      <!-- Time Range Selector -->
+      <div class="modal-header bg-light border-bottom">
+        <div class="btn-group" role="group">
+          <button type="button" 
+                  class="btn btn-sm"
+                  [class.btn-primary]="selectedTimeRange === 7"
+                  [class.btn-outline-primary]="selectedTimeRange !== 7"
+                  (click)="switchTimeRange(7)">
+            <i class="bi bi-calendar-week me-1"></i>
+            Last 7 Days
+          </button>
+          <button type="button" 
+                  class="btn btn-sm"
+                  [class.btn-primary]="selectedTimeRange === 30"
+                  [class.btn-outline-primary]="selectedTimeRange !== 30"
+                  (click)="switchTimeRange(30)">
+            <i class="bi bi-calendar-month me-1"></i>
+            Last 30 Days
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        
+        <!-- Loading Spinner -->
+        <div class="text-center py-5" *ngIf="isLoading">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="mt-3 text-muted">Loading historical data...</p>
+        </div>
+
+        <!-- No Data -->
+        <div class="text-center py-5" *ngIf="!isLoading && allSensorsData.length === 0">
+          <i class="bi bi-exclamation-circle text-muted" style="font-size: 3rem;"></i>
+          <p class="mt-3 text-muted">No historical data available</p>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts-container" *ngIf="!isLoading && allSensorsData.length > 0">
+          
+          <!-- Temperature Chart -->
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-danger text-white">
+              <h6 class="mb-0">
+                <i class="bi bi-thermometer-half me-2"></i>
+                Temperature Trend
+              </h6>
+            </div>
+            <div class="card-body">
+              <div class="chart-wrapper">
+                <canvas #tempCanvas></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Humidity Chart -->
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-info text-white">
+              <h6 class="mb-0">
+                <i class="bi bi-droplet-fill me-2"></i>
+                Humidity Trend
+              </h6>
+            </div>
+            <div class="card-body">
+              <div class="chart-wrapper">
+                <canvas #humidityCanvas></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- CO2 Chart -->
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-success text-white">
+              <h6 class="mb-0">
+                <i class="bi bi-cloud me-2"></i>
+                CO₂ Levels Trend
+              </h6>
+            </div>
+            <div class="card-body">
+              <div class="chart-wrapper">
+                <canvas #co2Canvas></canvas>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer bg-light" *ngIf="!isLoading && allSensorsData.length > 0">
+        <div class="me-auto">
+          <strong>Total Sensors:</strong> {{ allSensorsData.length }}
+        </div>
+        <div class="text-muted">
+          <small>Showing data for: {{ allSensorsData[0].sensor_id }}</small>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal Backdrop -->
+<div class="modal-backdrop fade" [class.show]="show" *ngIf="show" (click)="onClose()"></div>

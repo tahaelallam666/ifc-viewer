@@ -1,59 +1,59 @@
-# IfcViewer
+# 🏢 Green Energy Park - IFC Viewer
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.3.
+Application web full-stack pour la visualisation de modèles BIM (IFC) couplée à un système de monitoring en temps réel de capteurs IoT.
 
-## Development server
+## 📋 Description
 
-To start a local development server, run:
+**Green Energy Park** combine trois fonctionnalités principales :
+- 🔐 **Système d'authentification sécurisé** avec gestion de sessions
+- 🏗️ **Visualisation 3D de modèles IFC** directement dans le navigateur
+- 📊 **Monitoring temps réel** de capteurs IoT (température, humidité, CO2)
 
+---
+
+## 🎯 Choix des Technologies
+
+### **Frontend : Angular 20**
+**Pourquoi Angular ?**
+- ✅ TypeScript natif pour la sécurité des types
+- ✅ Architecture modulaire et scalable
+- ✅ Dependency Injection intégrée
+- ✅ RxJS pour la programmation réactive (polling temps réel)
+- ✅ CLI puissant pour développement rapide
+- ✅ Parfait pour applications d'entreprise
+
+**Bibliothèques utilisées :**
+- **web-ifc-viewer** : Parsing et rendu 3D des fichiers IFC
+- **Bootstrap 5** : UI responsive et moderne
+- **RxJS** : Gestion des flux de données asynchrones
+
+### **Backend : Node.js + Express**
+**Pourquoi Node.js ?**
+- ✅ JavaScript full-stack (même langage frontend/backend)
+- ✅ Architecture event-driven, parfait pour I/O temps réel
+- ✅ Non-bloquant et performant pour requêtes simultanées
+- ✅ Large écosystème npm
+- ✅ Idéal pour APIs REST et applications temps réel
+
+### **Base de Données : SQLite (Prototype)**
+**Pourquoi SQLite ?**
+- ✅ Zero configuration (fichier unique)
+- ✅ Parfait pour prototypage rapide
+- ✅ SQL standard (migration facile vers PostgreSQL)
+- ✅ Léger et portable
+
+**Pour production :** Migration prévue vers **TimescaleDB** (optimisé pour séries temporelles)
+
+---
+
+## 🚀 Installation et Démarrage
+
+### **Prérequis**
+- Node.js v18+ et npm
+- Angular CLI (`npm install -g @angular/cli`)
+- Git
+
+### **1. Cloner le projet**
 ```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+git clone [https://github.com/tahaelallam666/ifc-viewer.git](https://github.com/tahaelallam666/ifc-viewer.git)
+cd ifc-viewer
